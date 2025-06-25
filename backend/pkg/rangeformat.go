@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func writeRange(builder *strings.Builder, start, end, limit int) {
+func writeRange(builder *strings.Builder, start, end int) {
 	if start == end {
 		builder.WriteString(strconv.Itoa(start))
 	} else if start+1 == end {
@@ -17,7 +17,7 @@ func writeRange(builder *strings.Builder, start, end, limit int) {
 	}
 }
 
-func RangeFormat(rng []int, limit int) (string, error) {
+func RangeFormat(rng []int) (string, error) {
 	if len(rng) == 0 {
 		return "", nil
 	}
@@ -31,14 +31,14 @@ func RangeFormat(rng []int, limit int) (string, error) {
 		if rng[i] == end+1 {
 			end = rng[i]
 		} else {
-			writeRange(&builder, start, end, limit)
+			writeRange(&builder, start, end)
 			builder.WriteString(",")
 
 			start, end = rng[i], rng[i]
 		}
 	}
 
-	writeRange(&builder, start, end, limit)
+	writeRange(&builder, start, end)
 
 	return builder.String(), nil
 }
