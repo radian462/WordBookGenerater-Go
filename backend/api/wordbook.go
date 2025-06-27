@@ -50,10 +50,10 @@ func RegisterWordbook(r *gin.RouterGroup) {
 			})
 			return
 		}
-
+		
 		c.JSON(http.StatusOK, gin.H{
 			"status":   200,
-			"filepath": path,
+			"filepath": "/" + path,
 		})
 	})
 }

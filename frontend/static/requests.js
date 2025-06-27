@@ -30,9 +30,10 @@ async function requestGenerateWordBook() {
       }
   
       if (result["filepath"]){
+        console.log("ファイルパス:", result["filepath"]);
         const fullPath = result["filepath"];
         const fileName = fullPath.split("/").pop();
-
+        
         const a = document.createElement("a");
         document.body.appendChild(a);
         a.download = fileName;
