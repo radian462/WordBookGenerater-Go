@@ -1,8 +1,8 @@
 package main
 
 import (
-	"log"
 	"WordbookGenerater-Go/backend/api"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,6 +13,7 @@ func main() {
 	apiGroup := r.Group("/api")
 
 	api.RegisterWordbook(apiGroup)
+	api.RegisterWordTest(apiGroup)
 
 	log.Println("Server started at :8080")
 	r.Run(":8080")
