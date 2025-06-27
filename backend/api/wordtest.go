@@ -3,7 +3,6 @@ package api
 import (
 	"WordbookGenerater-Go/backend/pkg"
 	"encoding/csv"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"math/rand"
@@ -109,15 +108,9 @@ func RegisterWordTest(r *gin.RouterGroup) {
 			return
 		}
 
-		scheme := "http"
-		if c.Request.TLS != nil {
-			scheme = "https"
-		}
-		host := c.Request.Host
-
 		c.JSON(http.StatusOK, gin.H{
 			"status":   200,
-			"filepath": fmt.Sprintf("%s://%s%s", scheme, host, path),
+			"filepath":  "/" + path,
 		})
 	})
 }

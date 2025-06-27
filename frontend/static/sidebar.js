@@ -5,10 +5,11 @@ fetch('./sidebar.html')
     container.innerHTML = html;
 
     const path = window.location.pathname;
+    const filename = path.split('/').pop();
     const navLinks = container.querySelectorAll(".nav-link");
     navLinks.forEach(link => {
       const href = link.getAttribute("href");
-      if (href === path) {
+      if (href.split('/').pop() === filename) {
         link.classList.add("active");
         link.classList.remove("text-white");
       } else {
