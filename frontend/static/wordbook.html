@@ -27,11 +27,12 @@
         class="form-select form-select-lg mb-3"
         style="width: 95%; height: 55px;"
         aria-label=".form-select-lg example"
+        id="wordbookSelect"
       >
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option selected>単語帳を選択してください</option>
+        <option value="resources/wordbooks/ターゲット1000.csv">ターゲット1000</option>
+        <option value="resources/wordbooks/ターゲット1900.csv">ターゲット1900</option>
+        <option value="resources/wordbooks/古文単語330.csv">古文単語330</option>
       </select>
 
       <div style="width: 95%; display: flex; align-items: center;">
@@ -41,9 +42,10 @@
           placeholder="範囲 (例: 1-20,21~40,51,61)"
           aria-label=".form-control-lg example"
           style="width: 300px; height: 55px;"
+          id="rngInput"
         />
         <div style="flex-grow: 1;"></div>
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" onclick="requestGenerateWordBook()">
           <i class="bi bi-file-earmark-arrow-down-fill"></i> 生成
         </button>
       </div>
@@ -51,6 +53,7 @@
   </div>
 
   <script src="/sidebar.js"></script>
+  <script src="/requests.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

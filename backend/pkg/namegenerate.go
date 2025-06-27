@@ -8,13 +8,13 @@ import (
 func NameGenerate(filename, ext string, rng []int, limit int) string {
 	rangeString, err := RangeFormat(rng)
 	if err != nil {
-		return fmt.Sprintf("%s [].%s", filename, ext)
+		return fmt.Sprintf("%s[].%s", filename, ext)
 	}
 
-	fullname := fmt.Sprintf("%s [%s].%s", filename, rangeString, ext)
+	fullname := fmt.Sprintf("%s[%s].%s", filename, rangeString, ext)
 
 	if len(fullname) > limit {
-		rangeLimit := limit - len(fmt.Sprintf("%s [].%s", filename, ext))
+		rangeLimit := limit - len(fmt.Sprintf("%s[].%s", filename, ext))
 		if rangeLimit < 0 {
 			rangeLimit = 0
 		}
