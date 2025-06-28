@@ -8,8 +8,10 @@ import (
 
 func ExtractCSVRange(basePath string, outDir string, outName string, rng []int, header []string) (string, error) {
 	var outPath string
+	base := filepath.Base(basePath)
+	ext := filepath.Ext(base)
 	if outName == "" {
-		autoName := NameGenerate(filepath.Base(basePath), "csv", rng, 255)
+		autoName := NameGenerate(base[:len(base)-len(ext)], "csv", rng, 255)
 		outPath = filepath.Join(outDir, autoName)
 	} else {
 		outPath = filepath.Join(outDir, outName)
@@ -46,7 +48,13 @@ func ExtractCSVRange(basePath string, outDir string, outName string, rng []int, 
 
 	for _, r := range rng {
 		if r > 0 && r < len(rows) {
-			if err := writer.Write(rows[r-1]); err != nil {
+			row := rows[r-1]
+			if header != nil && len(header) > len(row) {
+				padded := make([]string, len(header))
+				copy(padded, row)
+				row = padded
+			}
+			if err := writer.Write(row); err != nil {
 				return "", err
 			}
 		}
