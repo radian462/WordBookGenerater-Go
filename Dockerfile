@@ -10,6 +10,8 @@ RUN go build -o wordbook-generator .
 
 FROM alpine:3.20
 
+WORKDIR /app
+
 COPY --from=builder /app/wordbook-generator .
 COPY --from=builder /app/frontend /app/frontend
 COPY --from=builder /app/resources /app/resources
