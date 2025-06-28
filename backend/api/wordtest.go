@@ -110,7 +110,7 @@ func RegisterWordTest(r *gin.RouterGroup) {
 
 		c.JSON(http.StatusOK, gin.H{
 			"status":   200,
-			"filepath":  "/" + path,
+			"filepath": "/" + path,
 		})
 	})
 }

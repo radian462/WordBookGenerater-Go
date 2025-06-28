@@ -3,11 +3,13 @@ package main
 import (
 	"WordbookGenerater-Go/backend/api"
 	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	os.MkdirAll("resources/output", 0755)
 	r := gin.Default()
 
 	r.Static("/static", "./frontend/static")
@@ -21,5 +23,5 @@ func main() {
 	api.RegisterWordTest(apiGroup)
 
 	log.Println("Server started at :8080")
-	r.Run("0.0.0.0:8080") 
+	r.Run("0.0.0.0:8080")
 }
