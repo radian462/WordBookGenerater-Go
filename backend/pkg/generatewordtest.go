@@ -55,7 +55,6 @@ func GenerateWordTest(template string, outDir string, outName string, words, ans
 	if len(words) > 50 {
 		words = words[:50]
 	}
-
 	if len(answers) > 50 {
 		answers = answers[:50]
 	}
@@ -75,6 +74,8 @@ func GenerateWordTest(template string, outDir string, outName string, words, ans
 	wordsPerColumn := 25
 	TestsheetName := f.GetSheetName(0)
 	AnswersheetName := f.GetSheetName(1)
+
+	colMaxWidths := make(map[string]float64)
 
 	for i := 0; i < length; i++ {
 		colOffset := (i / wordsPerColumn) * 4
@@ -99,17 +100,17 @@ func GenerateWordTest(template string, outDir string, outName string, words, ans
 			ans := FormatString(answers[i], 25)
 			f.SetCellValue(AnswersheetName, cell3, ans)
 
-			nowColWidth, err := f.GetColWidth(AnswersheetName, colStr3)
-			if err != nil {
-				return "", err
-			}
 			for _, l := range strings.Split(ans, "\n") {
 				w := float64(runewidth.StringWidth(l))
-				if w > nowColWidth {
-					f.SetColWidth(AnswersheetName, colStr3, colStr3, w)
+				if w > colMaxWidths[colStr3] {
+					colMaxWidths[colStr3] = w
 				}
 			}
 		}
+	}
+
+	for colStr, w := range colMaxWidths {
+		f.SetColWidth(AnswersheetName, colStr, colStr, w)
 	}
 
 	outPath := filepath.Join(outDir, outName)
