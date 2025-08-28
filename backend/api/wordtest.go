@@ -91,7 +91,7 @@ func RegisterWordTest(r *gin.RouterGroup) {
 
 		base := filepath.Base(query.BaseWordbookPath)
 		ext := filepath.Ext(base)
-		outName := pkg.NameGenerate(base[:len(base)-len(ext)], "xlsx", rng, 255)
+		outName := pkg.NameGenerate(base[:len(base)-len(ext)], "xlsx", rng, 207, "resources/output")
 		path, err := pkg.GenerateWordTest(
 			"resources/template.xlsx",
 			"resources/output",

@@ -11,7 +11,7 @@ func ExtractCSVRange(basePath string, outDir string, outName string, rng []int, 
 	base := filepath.Base(basePath)
 	ext := filepath.Ext(base)
 	if outName == "" {
-		autoName := NameGenerate(base[:len(base)-len(ext)], "csv", rng, 255)
+		autoName := NameGenerate(base[:len(base)-len(ext)], "csv", rng, 207, outDir)
 		outPath = filepath.Join(outDir, autoName)
 	} else {
 		outPath = filepath.Join(outDir, outName)
